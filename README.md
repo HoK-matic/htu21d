@@ -19,7 +19,9 @@ For higher accuracy, the dew point is now calculated based on an algorithm publi
 ### Setuptools
 The following commands install the library system wide:
 ~~~console
-tbd.
+git clone https://github.com/HoK-matic/htu21d.git
+cd htu21d
+sudo python setup.py install
 ~~~~
 
 ## Permissions and privilieges
