@@ -90,7 +90,7 @@ class HTU21DBusProtocol(object):
         self._read_handler.close()
         self._write_handler.close()
 
-class htu21d(object):
+class HTU21D(object):
     def __init__(self, busnum=I2C_BUS, address=HTU21D_I2CADDR, mode=HTU21D_NOHOLDMASTER):
         self._logger = logging.getLogger(__name__)
         #logging.basicConfig(level=logging.DEBUG)
