@@ -78,7 +78,7 @@ class HTU21DBusProtocol(object):
         return s if endianess == 'big' else s[::-1]
 
     def send_command(self, command):
-        self._write_handler.write(to_bytes(command))
+        self._write_handler.write(self.to_bytes(command))
 
     def read_bytes(self, len):
         return self._read_handler.read(len)
