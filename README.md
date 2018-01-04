@@ -1,5 +1,5 @@
 # htu21d
-**Python 2.7** Library for the Adafruit HTU21D-F Humidity and Temperature sensor breakout board. https://www.adafruit.com/product/1899
+**Python 2.7** library for the Adafruit HTU21D-F Humidity and Temperature sensor breakout board. https://www.adafruit.com/product/1899
 
 Based on the code of the Adafruit_Python_HTU21D library written by Massimo Gaggero for Adafruit Industries.
 
