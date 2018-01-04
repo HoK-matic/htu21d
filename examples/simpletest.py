@@ -40,9 +40,6 @@ def idle(secs):
     print('\r', end='')
     os.system('setterm -cursor on')
 
-    else:
-        time.sleep(secs)
-
 def main():
     print("Interface to Digital-Humidity-Sensor (HTU21D-F)")
     print("Copyright (©) 2018 Holger Kupke. All rights reserved.\n")
