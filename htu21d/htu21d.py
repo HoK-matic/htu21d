@@ -52,11 +52,6 @@ HTU21D_SOFTRESETCMD       = 0xFE  # Soft reset
 
 HTU21D_MAX_MEASURING_TIME = 0.1   # Sec
 
-def to_bytes(n, length, endianess='big'):
-    h = '%x' % n
-    s = ('0'*(len(h) % 2) + h).decode('hex')
-    return s if endianess == 'big' else s[::-1]
-
 class HTU21DException(Exception):
     pass
 
@@ -80,8 +75,13 @@ class HTU21DBusProtocol(object):
         #time.sleep(HTU21D_MAX_MEASURING_TIME/1000)
         time.sleep(HTU21D_MAX_MEASURING_TIME)
 
+    def to_bytes(self, n, length=1, endianess='big'):
+        h = '%x' % n
+        s = ('0'*(len(h) % 2) + h).decode('hex')
+        return s if endianess == 'big' else s[::-1]
+
     def send_command(self, command):
-        self._write_handler.write(to_bytes(command, 1, 'big'))
+        self._write_handler.write(to_bytes(command))
 
     def read_bytes(self, len):
         return self._read_handler.read(len)
