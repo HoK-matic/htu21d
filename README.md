@@ -17,8 +17,8 @@ Additionally, I replaced the original function 'read_dewpoint()' by the function
 ### Setuptools
 The following commands install the library system wide:
 ~~~console
-tbd
-~~~
+tbd.
+~~~~
 
 ## Permissions and privilieges
 Accessing **I2C** devices usually requires root privileges or privileged group membership. These can be obtained with:
