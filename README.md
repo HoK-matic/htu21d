@@ -1,12 +1,14 @@
 # htu21d
-Python Library for the Adafruit HTU21D-F Humidity and Temperature sensor breakout board. https://www.adafruit.com/product/1899
+***Python 2.7*** Library for the Adafruit HTU21D-F Humidity and Temperature sensor breakout board. https://www.adafruit.com/product/1899
 
 Based on the code of the Adafruit_Python_HTU21D library written by Massimo Gaggero for Adafruit Industries.
 
-The original Adafruit library only partially supports Python 2.7, which I am using for my Raspberry Pi-Weatherstation-Project.
-Therefore, I had to modify the library for use with Python 2.7. 
+The original Adafruit library only partially supports ***Python 2.7***, which I am using for my Raspberry Pi-Weatherstation-Project.
+Therefore, I had to modify the library for use with ***Python 2.7***. 
 
-Additionally, I replaced the original function 'read_dewpoint()' by the function 'dewpoint()', which now can be called with temperature and humidity as parameters. If the function is called without passing the temperature and/or the relative humidity, the function reads the sensors current value(s). For higher accuracy, the dew point is now calculated based on an algorithm published by *Stefan Ochs*. This algorithm distinguishes temperatures above or equal to 0 deg. Celsius from temperatures below 0 deg. Celsius. For further information see: https://www.wetterochs.de/wetter/feuchte.html
+Additionally, I replaced the original function 'read_dewpoint()' by the function 'dewpoint()', which now can be called with temperature and humidity as parameters. If the function is called without passing the temperature and/or the relative humidity, the function reads the sensors current value(s).
+
+For higher accuracy, the dew point is now calculated based on an algorithm published by *Stefan Ochs*. This algorithm distinguishes temperatures above or equal to 0 deg. Celsius from temperatures below 0 deg. Celsius. For further information see: https://www.wetterochs.de/wetter/feuchte.html
  
 **Warning**:
 
