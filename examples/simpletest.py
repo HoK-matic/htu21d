@@ -27,6 +27,7 @@
 #
 # END_COPYRIGHT
 
+from __future__ import print_function
 import os, time 
 import htu21d.htu21d as htu
 
