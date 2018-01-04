@@ -43,10 +43,10 @@ def idle(secs):
 
 def signal_handler(signum, frame):
     os.system('setterm -cursor on')
-    
+
     print("\rInterrupted by user.")
     print("Bye.")
-    
+
     sys.exit(0)
 
 def main():
