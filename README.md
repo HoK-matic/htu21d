@@ -24,14 +24,5 @@ tbd
 Accessing **I2C** devices usually requires root privileges or privileged group membership. These can be obtained with:
 
 * the use of `sudo` to run the program;
-* adding the user that runs the program to the I2C's device owning group;
-* creating an '**i2c**' group, assigning the i2c device to it and adding the user to that group.
+* adding the user that runs the program to the I2C's device owning group, if exists.
 
-### Creation of the 'i2c' group
-~~~console
-sudo groupadd -r i2c        # creates the 'i2c' group as a 'system' group
-sudo chgrp i2c /dev/i2c*    # changes group ownership of the i2c device files
-sudo chmod g+rw /dev/i2c*   # allow owning group to read/write to the devices
-sudo usermod -aG i2c $USER  # add the current user to the 'i2c' group
-~~~
-Logout and re-login.
