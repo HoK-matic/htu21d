@@ -28,7 +28,7 @@
 # END_COPYRIGHT
 
 from __future__ import print_function
-import os, sys, time 
+import os, sys, time, signal
 import htu21d.htu21d as htu
 
 def idle(secs):
@@ -41,7 +41,17 @@ def idle(secs):
     print('\r', end='')
     os.system('setterm -cursor on')
 
+def signal_handler(signum, frame):
+    os.system('setterm -cursor on')
+    
+    print("\rInterrupted by user.", end='')
+    print("Bye.")
+    
+    sys.exit(0)
+
 def main():
+    signal.signal(signal.SIGINT, signal_handler)
+
     print("Interface to Digital-Humidity-Sensor (HTU21D-F)")
     print("Copyright (©) 2018 Holger Kupke. All rights reserved.\n")
 
