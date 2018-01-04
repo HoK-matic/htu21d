@@ -22,8 +22,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# -*- coding: utf-8 -*-
-
 import io
 import time
 import math
@@ -72,7 +70,6 @@ class HTU21DBusProtocol(object):
         fcntl.ioctl(self._read_handler,  I2C_SLAVE, self._address)
         fcntl.ioctl(self._write_handler, I2C_SLAVE, self._address)
 
-        #time.sleep(HTU21D_MAX_MEASURING_TIME/1000)
         time.sleep(HTU21D_MAX_MEASURING_TIME)
 
     def to_bytes(self, n, length=1, endianess='big'):
@@ -93,7 +90,6 @@ class HTU21DBusProtocol(object):
 class HTU21D(object):
     def __init__(self, busnum=I2C_BUS, address=HTU21D_I2CADDR, mode=HTU21D_NOHOLDMASTER):
         self._logger = logging.getLogger(__name__)
-        #logging.basicConfig(level=logging.DEBUG)
 
         # Check that mode is valid.
         if mode not in [HTU21D_HOLDMASTER, HTU21D_NOHOLDMASTER]:
@@ -126,7 +122,6 @@ class HTU21D(object):
         self._htu_handler.open()
 
         self._htu_handler.send_command(HTU21D_SOFTRESETCMD & 0xFF)
-        #time.sleep(HTU21D_MAX_MEASURING_TIME/1000)
         time.sleep(HTU21D_MAX_MEASURING_TIME)
         self._htu_handler.close()
 
@@ -137,7 +132,6 @@ class HTU21D(object):
         self._htu_handler.open()
 
         self._htu_handler.send_command((HTU21D_TRIGGERTEMPCMD | self._mode) & 0xFF)
-        #time.sleep(HTU21D_MAX_MEASURING_TIME/1000)
         time.sleep(HTU21D_MAX_MEASURING_TIME)
 
         msb, lsb, chsum = self._htu_handler.read_bytes(3)
@@ -158,7 +152,6 @@ class HTU21D(object):
         self._htu_handler.open()
 
         self._htu_handler.send_command((HTU21D_TRIGGERHUMIDITYCMD | self._mode) & 0xFF)
-        #time.sleep(HTU21D_MAX_MEASURING_TIME/1000)
         time.sleep(HTU21D_MAX_MEASURING_TIME)
         msb, lsb, chsum = self._htu_handler.read_bytes(3)
 
