@@ -32,7 +32,7 @@ setup(
     description           = 'Python 2.7 library for accessing the HTU21D-F humidity and temperature sensor on a Raspberry Pi',
     license               = 'MIT',
     platforms             = ["Linux"],
-    url                   = '',
+    url                   = 'https://github.com/HoK-matic/htu21d',
     packages              = find_packages(),
     classifiers=[
         'Development Status :: 4 - Beta',
