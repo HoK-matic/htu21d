@@ -53,7 +53,7 @@ def main():
     signal.signal(signal.SIGINT, signal_handler)
 
     print("Interface to Digital-Humidity-Sensor (HTU21D-F)")
-    print("Copyright (©) 2018 Holger Kupke.\n")
+    print("Copyright 2018 Holger Kupke.\n")
 
     sensor = htu.HTU21D()
 
