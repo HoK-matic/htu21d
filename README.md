@@ -17,9 +17,7 @@ Additionally, I replaced the original function 'read_dewpoint()' by the function
 ### Setuptools
 The following commands install the library system wide:
 ~~~console
-git clone https://github.com/HoK-matic/htu21d.git
-cd htu21d
-sudo python setup.py install
+tbd
 ~~~
 
 ## Permissions and privilieges
