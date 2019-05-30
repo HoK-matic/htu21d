@@ -28,6 +28,7 @@ import time
 import math
 import fcntl
 import logging
+import sys
 
 # RPI-2/3 IC2 default bus
 I2C_BUS                   = 1
@@ -74,15 +75,20 @@ class HTU21DBusProtocol(object):
         time.sleep(HTU21D_MAX_MEASURING_TIME)
 
     def to_bytes(self, n, length=1, endianess='big'):
-        h = '%x' % n
-        s = ('0'*(len(h) % 2) + h).decode('hex')
+        s = bytearray([n])
         return s if endianess == 'big' else s[::-1]
 
     def send_command(self, command):
         self._write_handler.write(self.to_bytes(command))
 
     def read_bytes(self, len):
-        return self._read_handler.read(len)
+        msb, lsb, chsum = self._read_handler.read(len)
+        if sys.version_info < (3, 0):
+            # Python 2 needs to convert this from string to bytes.
+            msb = ord(msb)
+            lsb = ord(lsb)
+            chsum = ord(chsum)
+        return msb, lsb, chsum
 
     def close(self):
         self._read_handler.close()
@@ -104,8 +110,8 @@ class HTU21D(object):
         self._htu_handler = HTU21DBusProtocol(self._busnum, self._address)
 
     def crc_check(self, msb, lsb, crc):
-        remainder = ((ord(msb) << 8) | ord(lsb)) << 8
-        remainder |= ord(crc)
+        remainder = ((msb << 8) | lsb) << 8
+        remainder |= crc
         divsor = 0x988000
 
         for i in range(0, 16):
@@ -142,7 +148,7 @@ class HTU21D(object):
         if self.crc_check(msb, lsb, chsum) is False:
             raise HTU21DException("CRC Exception")
 
-        raw = (ord(msb) << 8) + ord(lsb)
+        raw = (msb << 8) + lsb
         raw &= 0xFFFC
         self._logger.debug('Raw temp 0x{0:X} ({1})'.format(raw & 0xFFFF, raw))
 
@@ -161,7 +167,7 @@ class HTU21D(object):
         if self.crc_check(msb, lsb, chsum) is False:
             raise HTU21DException("CRC Exception")
 
-        raw = (ord(msb) << 8) + ord(lsb)
+        raw = (msb << 8) + lsb
         raw &= 0xFFFC
         self._logger.debug('Raw relative humidity 0x{0:04X} ({1})'.format(raw & 0xFFFF, raw))
 
